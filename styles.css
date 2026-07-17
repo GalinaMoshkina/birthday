@@ -139,6 +139,45 @@ body {
 .input-hint.error { color: #ff5353; }
 .restart { display: block; margin: 26px 0 0; }
 .restart[hidden] { display: none; }
+.input-hint.warning { color: #ff3c3c; text-shadow: 0 0 7px rgba(255, 30, 30, .65); }
+.terminal-form.riddle input { width: min(330px, 42vw); border-bottom: 1px solid #269d3e; }
+.terminal-form.riddle .cursor { display: none; }
+
+.close-overlay {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, .92);
+}
+.close-overlay[hidden], .credits[hidden] { display: none; }
+.close-card { width: min(500px, 100%); text-align: center; color: #ff4141; font-weight: 700; letter-spacing: .12em; }
+.close-card img { display: block; width: min(360px, 100%); min-height: 190px; margin: 20px auto; object-fit: cover; border: 1px solid #ff4141; box-shadow: 0 0 25px rgba(255, 35, 35, .3); }
+.baby-fallback { display: grid; place-items: center; width: min(360px, 100%); min-height: 190px; margin: 20px auto; border: 1px solid #ff4141; font-size: 90px; }
+.baby-fallback[hidden] { display: none; }
+.close-card button, .skip-credits {
+  padding: 10px 15px; border: 1px solid currentColor; background: rgba(0, 0, 0, .6); color: inherit;
+  font: 700 11px "Courier New", monospace; letter-spacing: .1em; cursor: pointer;
+}
+
+.credits { position: fixed; z-index: 30; inset: 0; overflow: hidden; background: #000; perspective: 440px; }
+.stars { position: absolute; inset: -50%; background-repeat: repeat; animation: star-drift 18s linear infinite; }
+.stars-a { opacity: .85; background-image: radial-gradient(#fff 1px, transparent 1.5px); background-size: 43px 43px; }
+.stars-b { opacity: .5; background-image: radial-gradient(#9bbdff 1px, transparent 1.5px); background-size: 77px 77px; animation-duration: 30s; }
+.crawl-stage { position: absolute; inset: 0; overflow: hidden; transform-origin: 50% 100%; transform: rotateX(24deg); }
+.crawl {
+  position: absolute; top: 100%; left: 8%; width: 84%; color: #f3c94b; text-align: center;
+  font: 800 clamp(25px, 6vw, 58px)/1.45 Arial, sans-serif; letter-spacing: .06em;
+  text-shadow: 0 0 7px rgba(243, 201, 75, .3); animation: crawl-up 48s linear forwards;
+}
+.crawl h1 { margin-bottom: 1em; font-size: 1.4em; }
+.crawl p { margin: .45em 0; }
+.skip-credits { position: absolute; z-index: 2; top: 16px; right: 16px; color: rgba(255,255,255,.6); }
+
+@keyframes crawl-up { from { transform: translateY(0); } to { transform: translateY(calc(-100% - 110vh)); } }
+@keyframes star-drift { to { transform: translate3d(7%, 10%, 0); } }
 noscript { position: fixed; z-index: 5; bottom: 10px; color: #fff; }
 
 @keyframes blink { 0%, 48% { opacity: 1; } 49%, 100% { opacity: 0; } }
@@ -151,6 +190,9 @@ noscript { position: fixed; z-index: 5; bottom: 10px; color: #fff; }
   .signal { font-size: 0; }
   .signal::after { content: "●"; font-size: 12px; }
   #terminal-output { min-height: 0; }
+  .terminal-form.riddle { flex-wrap: wrap; }
+  .terminal-form.riddle input { flex: 1; width: auto; min-width: 120px; }
+  .terminal-form.riddle button { width: 100%; margin-top: 6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

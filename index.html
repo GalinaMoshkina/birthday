@@ -31,7 +31,6 @@
             name="answer"
             type="text"
             inputmode="text"
-            maxlength="1"
             placeholder=" "
             autocapitalize="characters"
             spellcheck="false"
@@ -45,6 +44,24 @@
         <button id="restart" class="restart" type="button" hidden>ПОВТОРИТЬ СЕАНС</button>
       </section>
     </main>
+
+    <div id="close-overlay" class="close-overlay" hidden>
+      <div class="close-card">
+        <p>БЛИЗКО, НО НЕ ТОЧНО</p>
+        <img id="baby-photo" src="assets/baby.jpg" alt="Улыбающийся ребёнок" />
+        <div id="baby-fallback" class="baby-fallback" hidden>👶</div>
+        <button id="close-return" type="button">ВЕРНУТЬСЯ К ОТВЕТУ</button>
+      </div>
+    </div>
+
+    <section id="credits" class="credits" aria-label="Космические титры" hidden>
+      <div class="stars stars-a"></div>
+      <div class="stars stars-b"></div>
+      <button id="skip-credits" class="skip-credits" type="button">ПРОПУСТИТЬ</button>
+      <div class="crawl-stage">
+        <div class="crawl" id="crawl-text"></div>
+      </div>
+    </section>
 
     <noscript>Для работы терминала необходимо включить JavaScript.</noscript>
     <script src="script.js"></script>
