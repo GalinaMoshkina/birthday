@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#020804" />
+    <meta name="description" content="Закрытый терминал серверной B-7" />
+    <title>SPACEX // Серверная B-7</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="matrix" aria-hidden="true"></canvas>
+
+    <main class="terminal-shell" aria-label="Терминал серверной B-7">
+      <header class="terminal-bar">
+        <div class="terminal-lights" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <p>root@b7-quarantine:~</p>
+        <div class="signal" aria-label="Соединение установлено">● ONLINE</div>
+      </header>
+
+      <section class="terminal-screen" aria-live="polite">
+        <div class="boot-line" id="boot-line">SECURE CONNECTION ESTABLISHED // 2035.07.19</div>
+        <pre id="terminal-output"></pre>
+
+        <form id="terminal-form" class="terminal-form" autocomplete="off" hidden>
+          <label for="answer"><span id="prompt-label">root@b7:~$</span></label>
+          <input
+            id="answer"
+            name="answer"
+            type="text"
+            inputmode="text"
+            maxlength="1"
+            placeholder=" "
+            autocapitalize="characters"
+            spellcheck="false"
+            aria-label="Введите Y или N"
+          />
+          <span class="cursor" aria-hidden="true"></span>
+          <button type="submit">ВВОД</button>
+          <p class="input-hint" id="input-hint">Введите Y или N</p>
+        </form>
+
+        <button id="restart" class="restart" type="button" hidden>ПОВТОРИТЬ СЕАНС</button>
+      </section>
+    </main>
+
+    <noscript>Для работы терминала необходимо включить JavaScript.</noscript>
+    <script src="script.js"></script>
+  </body>
+</html>

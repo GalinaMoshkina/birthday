@@ -1,0 +1,158 @@
+:root {
+  color-scheme: dark;
+  --green: #65ff7a;
+  --green-bright: #b3ffbd;
+  --green-muted: #1fb64a;
+  --background: #010403;
+}
+
+* { box-sizing: border-box; }
+
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  overflow-x: hidden;
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 3vw, 38px);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(0, 82, 24, .17), transparent 48%),
+    var(--background);
+  color: var(--green);
+  font-family: "Courier New", "Lucida Console", monospace;
+}
+
+#matrix {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .18;
+  pointer-events: none;
+}
+
+.terminal-shell {
+  position: relative;
+  z-index: 1;
+  width: min(900px, 100%);
+  min-height: min(720px, calc(100svh - 24px));
+  border: 1px solid rgba(84, 255, 113, .5);
+  border-radius: 7px;
+  overflow: hidden;
+  background: rgba(0, 7, 3, .91);
+  box-shadow: 0 0 26px rgba(0, 255, 70, .14), inset 0 0 70px rgba(0, 255, 70, .035);
+}
+
+.terminal-shell::after {
+  content: "";
+  position: absolute;
+  inset: 38px 0 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(123, 255, 139, .025) 3px 4px);
+}
+
+.terminal-bar {
+  height: 38px;
+  padding: 0 12px;
+  display: grid;
+  grid-template-columns: 90px 1fr 90px;
+  align-items: center;
+  border-bottom: 1px solid rgba(84, 255, 113, .3);
+  background: #061009;
+  color: #7bbf85;
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+
+.terminal-bar p { margin: 0; text-align: center; }
+.terminal-lights { display: flex; gap: 7px; }
+.terminal-lights span { width: 9px; height: 9px; border: 1px solid #349447; border-radius: 50%; }
+.terminal-lights span:first-child { background: #238d38; box-shadow: 0 0 7px #2eff52; }
+.signal { color: #46d95d; text-align: right; font-size: 9px; }
+
+.terminal-screen {
+  position: relative;
+  z-index: 1;
+  padding: clamp(18px, 4vw, 46px);
+}
+
+.boot-line {
+  margin-bottom: 22px;
+  color: #229a3b;
+  font-size: clamp(9px, 1.8vw, 12px);
+  letter-spacing: .14em;
+}
+
+#terminal-output {
+  min-height: 440px;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--green);
+  font: inherit;
+  font-size: clamp(11px, 2.4vw, 18px);
+  line-height: 1.38;
+  text-shadow: 0 0 5px rgba(80, 255, 106, .55);
+}
+
+.terminal-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+  padding-bottom: 28px;
+  color: var(--green-bright);
+  font-weight: 700;
+  font-size: clamp(14px, 2.7vw, 19px);
+}
+
+.terminal-form[hidden] { display: none; }
+.terminal-form input {
+  width: 25px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--green-bright);
+  caret-color: transparent;
+  font: inherit;
+  text-transform: uppercase;
+}
+
+.cursor { width: 10px; height: 1.1em; margin-left: -25px; background: var(--green); animation: blink .8s steps(1) infinite; }
+.terminal-form input:not(:placeholder-shown) + .cursor { opacity: 0; }
+.terminal-form button, .restart {
+  margin-left: auto;
+  padding: 8px 13px;
+  border: 1px solid #2fb649;
+  background: rgba(29, 157, 54, .12);
+  color: var(--green);
+  font: 700 11px inherit;
+  letter-spacing: .12em;
+  cursor: pointer;
+}
+.terminal-form button:hover, .restart:hover { background: rgba(54, 255, 89, .2); box-shadow: 0 0 12px rgba(49, 255, 84, .2); }
+.input-hint { position: absolute; left: 0; bottom: 0; margin: 0; color: #238e36; font-size: 10px; font-weight: 400; letter-spacing: .08em; }
+.input-hint.error { color: #ff5353; }
+.restart { display: block; margin: 26px 0 0; }
+.restart[hidden] { display: none; }
+noscript { position: fixed; z-index: 5; bottom: 10px; color: #fff; }
+
+@keyframes blink { 0%, 48% { opacity: 1; } 49%, 100% { opacity: 0; } }
+
+@media (max-width: 560px) {
+  body { place-items: start center; padding: 8px; }
+  .terminal-shell { min-height: calc(100svh - 16px); }
+  .terminal-bar { grid-template-columns: 52px 1fr 52px; padding: 0 8px; }
+  .terminal-bar p { font-size: 9px; }
+  .signal { font-size: 0; }
+  .signal::after { content: "●"; font-size: 12px; }
+  #terminal-output { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; }
+}
